@@ -8,7 +8,7 @@ setup(
 	license='Apache',
 
 	packages=['feature_extraction'],
-	install_requires=['numpy', 'Pillow', 'Click'],
+	install_requires=['numpy', 'Pillow', 'Click', 'scikit-image'],
 
 	entry_points='''
 	[console_scripts]
