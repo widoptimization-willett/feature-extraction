@@ -8,7 +8,7 @@ setup(
 	license='Apache',
 
 	packages=['feature_extraction'],
-	install_requires=['numpy', 'Pillow', 'Click', 'scikit-image', 'centrosome'],
+	install_requires=['PyYAML', 'numpy', 'Pillow', 'Click', 'scikit-image', 'centrosome'],
 
 	entry_points='''
 	[console_scripts]
