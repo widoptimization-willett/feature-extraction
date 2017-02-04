@@ -18,8 +18,7 @@ def extract_features(files, output):
 	processed_files = [] # array of maps containing metadata and feature vectors mapped to files
 	for filename in files:
 		# -- load data
-		_im = Image.open(filename)
-		im = np.array(_im) # convert to a numpy array
+		im = np.array(Image.open(filename)) # load with Pillow, convert to a numpy array
 		assert im.ndim == 2 # rank should be 2 if we're only considering grayscale images
 
 		# -- extract features
