@@ -9,3 +9,6 @@ class Measurement(object):
 		These are exposed to internal algorithms as `self.options`.
 		"""
 		self.options = options
+
+from .pixelaverage import PixelAverage
+from .texture_haralick import HaralickTexture

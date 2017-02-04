@@ -5,10 +5,10 @@ import numpy as np
 from PIL import Image
 
 from . import extraction
-from .measurements.pixelaverage import PixelAverage
+from .measurements import PixelAverage, HaralickTexture
 
 # TODO(liam): replace with CLI arguments or a manifest
-ENABLED_MEASURMENTS = [PixelAverage()]
+ENABLED_MEASURMENTS = [PixelAverage(), HaralickTexture()]
 
 @click.command()
 @click.argument('files', nargs=-1, required=True) # unlimited number of args can be passed (eg. globbing)
