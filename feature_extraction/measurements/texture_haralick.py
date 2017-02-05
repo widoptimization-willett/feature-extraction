@@ -45,4 +45,20 @@ class HaralickTexture(Measurement):
 		# so we'll generate a single label covering the entire AoI
 		labels = mask*1 # convert the boolean mask into a zeros/ones label array
 
-		return []
+		if self.options.haralick_angle == 'average':
+			fvecs = []
+			for angle in ['vertical', 'horizontal', 'diagonal', 'antidiagonal']:
+				scale_i, scale_j = self._get_haralick_scales(self.options.haralick_scale,
+					angle)
+
+				# hstack since .all() outputs an array of 1-arrays
+				fvecs.append(np.hstack(Haralick(image, labels, scale_i, scale_j).all()))
+			fvec = np.mean(fvecs, axis=0)
+		else:
+			scale_i, scale_j = self._get_haralick_scales(self.options.haralick_scale,
+				self.options.haralick_angle)
+
+			# hstack since .all() outputs an array of 1-arrays
+			fvec = np.hstack(Haralick(image, labels, scale_i, scale_j).all())
+
+		return fvec
