@@ -22,7 +22,9 @@ class HaralickTexture(Measurement):
 				mask = binary_erosion(cleanup.cell_boundary_mask(), disk(self.options.erode_cell_amount))
 
 			# mask the image
-			image = image[mask]
+			# TODO(liam): we can probably use scipy.MaskedArray to get a speedup here
+			image = image.copy()
+			image[~mask] = 0 # set everything *outside* the cell to 0
 
 		# -- haralick setup and run
 
