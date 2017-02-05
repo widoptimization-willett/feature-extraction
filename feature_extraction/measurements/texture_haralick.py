@@ -1,6 +1,9 @@
+import numpy as np
+import scipy as sp
 from . import Measurement
 import feature_extraction.util.cleanup as cleanup
 from skimage.morphology import binary_erosion, disk
+from centrosome .haralick import Haralick
 
 class HaralickTexture(Measurement):
 	default_options = {
