@@ -17,6 +17,12 @@ class HaralickTexture(Measurement):
 	def __init__(self, options=None):
 		super(HaralickTexture, self).__init__(options)
 
+	def _get_haralick_scales(self, scale, angle):
+		return {'vertical': (scale, 0),
+				'horizontal': (0, scale),
+				'diagonal': (scale, scale),
+				'antidiagonal': (scale, -scale)}[angle]
+
 	def compute(self, image):
 		# -- preprocessing
 		# by default, the AoI mask will include the whole image
