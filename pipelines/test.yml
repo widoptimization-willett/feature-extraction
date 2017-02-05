@@ -1,4 +1,4 @@
 measurements:
   - PixelAverage:
   - HaralickTexture:
-      clip_cell_borders: no
+      clip_cell_borders: yes
