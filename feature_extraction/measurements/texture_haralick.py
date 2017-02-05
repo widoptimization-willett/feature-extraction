@@ -29,5 +29,8 @@ class HaralickTexture(Measurement):
 			image[~mask] = 0 # set everything *outside* the cell to 0
 
 		# -- haralick setup and run
+		# we're looking at the entire cell's haralick texture parameters,
+		# so we'll generate a single label covering the entire AoI
+		labels = mask*1 # convert the boolean mask into a zeros/ones label array
 
 		return []
