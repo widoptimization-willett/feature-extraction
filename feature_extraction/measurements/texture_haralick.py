@@ -13,6 +13,8 @@ class HaralickTexture(Measurement):
 
 	def compute(self, image):
 		# -- preprocessing
+		# by default, the AoI mask will include the whole image
+		mask = np.ones_like(image).astype(bool)
 		if self.options.clip_cell_borders:
 			# get the cell boundary mask
 			mask = cleanup.cell_boundary_mask(image)
