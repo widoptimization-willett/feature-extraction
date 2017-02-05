@@ -3,9 +3,11 @@ import json
 import click
 import numpy as np
 from PIL import Image
+from skimage.exposure import rescale_intensity
 
 from . import extraction, pipeline
 from .measurements import PixelAverage, HaralickTexture
+
 
 @click.command()
 @click.argument('pipeline_manifest', required=True)
@@ -17,7 +19,8 @@ def extract_features(pipeline_manifest, files, output):
 	processed_files = [] # array of maps containing metadata and feature vectors mapped to files
 	for filename in files:
 		# -- load data
-		im = np.array(Image.open(filename)) # load with Pillow, convert to a numpy array
+		# load with Pillow, convert to a numpy array, rescale to 8 bits of depth
+		im = rescale_intensity(np.array(Image.open('data/REV_04.tif')), 'dtype', 'uint8')
 		assert im.ndim == 2 # rank should be 2 if we're only considering grayscale images
 
 		# -- extract features
