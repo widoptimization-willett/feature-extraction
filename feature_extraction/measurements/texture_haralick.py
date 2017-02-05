@@ -7,6 +7,9 @@ from centrosome .haralick import Haralick
 
 class HaralickTexture(Measurement):
 	default_options = {
+		'haralick_scale': 10,
+		'haralick_angle': 'average',
+
 		'clip_cell_borders': True,
 		'erode_cell': False,
 		'erode_cell_amount': False,
