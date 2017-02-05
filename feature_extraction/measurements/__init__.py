@@ -1,5 +1,5 @@
 from collections import defaultdict
-from feature_extraction.util import DefaultAttributeDict
+from feature_extraction.util import AttributeDict
 
 class Measurement(object):
 	"""
@@ -23,7 +23,7 @@ class Measurement(object):
 		options : dict
 			A dict of options for this measurement.
 		"""
-		self.options = DefaultAttributeDict()
+		self.options = AttributeDict()
 		self.options.update(self.default_options or {})
 		self.options.update(options or {})
 
