@@ -11,7 +11,7 @@ class HaralickTexture(Measurement):
 		'angle': 'average',
 
 		'clip_cell_borders': True,
-		'erode_cell': None,
+		'cell_border_erosion': None,
 	}
 
 	def _get_haralick_scales(self, scale, angle):
@@ -23,7 +23,7 @@ class HaralickTexture(Measurement):
 	def compute(self, image):
 		# -- preprocessing
 		image, aoi_mask = cell_aoi_and_clip(image, clip=self.options.clip_cell_borders,
-										erosion=self.options.erode_cell)
+										erosion=self.options.cell_border_erosion)
 		# -- haralick setup and run
 		# we're looking at the entire cell's haralick texture parameters,
 		# so we'll generate a single label covering the entire AoI
