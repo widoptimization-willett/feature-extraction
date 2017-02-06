@@ -20,7 +20,7 @@ def extract_features(pipeline_manifest, files, output):
 	for filename in files:
 		# -- load data
 		# load with Pillow, convert to a numpy array, rescale to 8 bits of depth
-		im = rescale_intensity(np.array(Image.open('data/REV_04.tif')), 'dtype', 'uint8')
+		im = rescale_intensity(np.array(Image.open(filename)), 'dtype', 'uint8')
 		assert im.ndim == 2 # rank should be 2 if we're only considering grayscale images
 
 		# -- extract features
