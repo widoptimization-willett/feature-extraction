@@ -14,8 +14,6 @@ class HaralickTexture(Measurement):
 		'erode_cell': False,
 		'erode_cell_amount': False,
 	}
-	def __init__(self, options=None):
-		super(HaralickTexture, self).__init__(options)
 
 	def _get_haralick_scales(self, scale, angle):
 		return {'vertical': (scale, 0),
