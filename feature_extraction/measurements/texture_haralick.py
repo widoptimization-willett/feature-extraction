@@ -11,8 +11,10 @@ class HaralickTexture(Measurement):
 	Code is derived from that in CellProfiler; CellProfiler's image library, Centrosome,
 	is used to perform the Haralick computations.
 
-	Options
-	---------------
+	Notes
+	-----
+	This Measurement accepts the following parameters:
+
 	scale : int
 		The scale at which to measure texture correlations.
 		This is the distance at which intensities are correlated.
@@ -21,17 +23,17 @@ class HaralickTexture(Measurement):
 	angle : {'average', 'horizontal', 'vertical', 'diagonal', 'antidiagonal'}
 		The direction to measure intensity correlation in (that is, the direction
 		of the offset to chose pixels).
-		If set to `'average'`, the Haralick texture parameters are calculated for all directions
+		If set to ``'average'``, the Haralick texture parameters are calculated for all directions
 		and then averaged, which produces a kind of rotational invariance.
 
-		Default: `'average'`.
+		Default: ``'average'``.
 	clip_cell_borders : bool
-		When `True`, a RoI mask will be identified of the cell only.
+		When ``True``, a RoI mask will be identified of the cell only.
 		The Haralick routines will then operate only on this region.
 
-		Defult: `True`
+		Default: ``True``
 	cell_border_erosion : int or None
-		If `clip_cell_borders` is `True`, the RoI mask will be eroded with a disk of size `cell_border_erosion.
+		If `clip_cell_borders` is ``True``, the RoI mask will be eroded with a disk of size `cell_border_erosion`.
 		May be useful if the cells have edge artifacting.
 
 		Default: `None`

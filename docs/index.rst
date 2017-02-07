@@ -11,7 +11,6 @@ Welcome to feature-extraction's documentation!
    :caption: Contents:
 
 
-
 Indices and tables
 ==================
 
