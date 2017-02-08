@@ -26,8 +26,8 @@ def construct_from_manifest(file):
 
 	pipeline = []
 	for m in data['measurements']:
-		class_name = m.keys()[0]
-		options = m.values()[0]
+		class_name = m['module']
+		options = m; options.pop('module')
 		_class = getattr(measurements, class_name)
 
 		pipeline.append(_class(options)) # instantiate w/ options, append to pipeline
