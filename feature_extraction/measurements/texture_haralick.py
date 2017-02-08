@@ -1,7 +1,7 @@
 import numpy as np
 import scipy as sp
 from . import Measurement
-from feature_extraction.util.cleanup import cell_aoi_and_clip
+from ..util.cleanup import cell_aoi_and_clip
 from skimage.morphology import binary_erosion, disk
 from centrosome .haralick import Haralick
 

@@ -1,5 +1,5 @@
 from collections import defaultdict
-from feature_extraction.util import AttributeDict
+from ..util import AttributeDict
 
 class Measurement(object):
 	"""

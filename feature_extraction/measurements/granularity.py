@@ -5,7 +5,7 @@ import skimage
 import skimage.morphology as morph
 
 from . import Measurement
-from feature_extraction.util.cleanup import cell_aoi_and_clip
+from ..util.cleanup import cell_aoi_and_clip
 
 class Granularity(Measurement):
 	default_options = {
