@@ -3,7 +3,7 @@ import scipy as sp
 from . import Measurement
 from ..util.cleanup import cell_aoi_and_clip
 from skimage.morphology import binary_erosion, disk
-from centrosome .haralick import Haralick
+from centrosome.haralick import Haralick
 
 class HaralickTexture(Measurement):
 	"""
