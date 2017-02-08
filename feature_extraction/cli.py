@@ -6,7 +6,6 @@ from PIL import Image
 from skimage.exposure import rescale_intensity
 
 from . import extraction, pipeline
-from .measurements import PixelAverage, HaralickTexture
 
 
 @click.command()
