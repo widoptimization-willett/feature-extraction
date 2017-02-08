@@ -2,3 +2,5 @@ measurements:
   - module: PixelAverage
   - module: HaralickTexture
     clip_cell_borders: yes
+  - module: Granularity
+    clip_cell_borders: yes
