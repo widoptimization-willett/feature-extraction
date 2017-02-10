@@ -6,5 +6,5 @@ insert_final_newline = true
 charset = utf-8
 
 [*.py]
-ident_style = space
-ident_size = 4
+indent_style = tab
+indent_size = 4
