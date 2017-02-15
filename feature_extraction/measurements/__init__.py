@@ -30,3 +30,4 @@ class Measurement(object):
 from .pixelaverage import PixelAverage
 from .texture_haralick import HaralickTexture
 from .granularity import Granularity
+from .edge_intensity_ratio import EdgeIntensityRatio
