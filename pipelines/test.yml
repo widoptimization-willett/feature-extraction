@@ -1,9 +1,12 @@
 measurements:
-  - module: PixelAverage
+  # - module: PixelAverage
   - module: HaralickTexture
-    clip_cell_borders: yes
   - module: Granularity
-    clip_cell_borders: yes
+  - module: EdgeIntensityRatio
+
+preprocessing:
+  equalization:
+    saturated: 0.002
 
 postprocessing:
   normalize: yes
