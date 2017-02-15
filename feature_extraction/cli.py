@@ -22,6 +22,9 @@ def extract_features(pipeline_manifest, files, output):
 		im = rescale_intensity(np.array(Image.open(filename)), 'dtype', 'uint16')
 		assert im.ndim == 2 # rank should be 2 if we're only considering grayscale images
 
+		# -- preprocess
+		im = extraction.image_preprocessing(im, preprocess_options)
+
 		# -- extract features
 		x = extraction.extract_features(im, pipe)
 

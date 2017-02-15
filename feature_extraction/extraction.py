@@ -33,3 +33,12 @@ def feature_postprocessing(X, options):
 		X = normalize_features(X)
 
 	return X
+
+def image_preprocessing(im, options):
+	_options = AttributeDict({'normalize': True, 'equalization': None})
+	_options.update(options or {}); options = _options
+
+	if options.normalize:
+		im = im.astype(float) / im.max() # normalize to [0,1]
+
+	return im
