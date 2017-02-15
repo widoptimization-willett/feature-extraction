@@ -18,8 +18,10 @@ def construct_from_manifest(file):
 
 	Returns
 	-------
-	list
+	pipeline : list
 		A list of instantiated Measurement objects.
+	postprocess_options : dict
+		Options for the postprocessor
 	"""
 
 	data = yaml.safe_load(file)
@@ -32,4 +34,8 @@ def construct_from_manifest(file):
 
 		pipeline.append(_class(options)) # instantiate w/ options, append to pipeline
 
-	return pipeline
+
+	preprocess_options = data.get('preprocessing', {})
+	postprocess_options = data.get('postprocessing', {})
+
+	return preprocess_options, pipeline, postprocess_options

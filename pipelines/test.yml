@@ -4,3 +4,7 @@ measurements:
     clip_cell_borders: yes
   - module: Granularity
     clip_cell_borders: yes
+
+postprocessing:
+  normalize: yes
+  fill_nans: yes

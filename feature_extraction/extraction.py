@@ -1,4 +1,5 @@
 import numpy as np
+from .util import AttributeDict
 
 def extract_features(image, measurements):
 	"""
@@ -18,5 +19,17 @@ def normalize_features(X):
 
 	# normalize for each record
 	X /= np.vstack(np.linalg.norm(X, axis=1))
+
+	return X
+
+def feature_postprocessing(X, options):
+	_options = AttributeDict({'normalize': True, 'fill_nans': False})
+	_options.update(options or {}); options = _options
+
+	if options.fill_nans:
+		X = np.nan_to_num(X)
+
+	if options.normalize:
+		X = normalize_features(X)
 
 	return X

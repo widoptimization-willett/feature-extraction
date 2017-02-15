@@ -13,20 +13,24 @@ from . import extraction, pipeline
 @click.argument('files', nargs=-1, required=True) # unlimited number of args can be passed (eg. globbing)
 @click.option('-o', '--output', default='features.json')
 def extract_features(pipeline_manifest, files, output):
-	pipe = pipeline.construct_from_manifest(open(pipeline_manifest))
+	preprocess_options, pipe, postprocess_options = pipeline.construct_from_manifest(open(pipeline_manifest))
 	# TODO(liam): replace this with sending to celery and joining
-	processed_files = [] # array of maps containing metadata and feature vectors mapped to files
+	X_raw = [] # raw feature matrix
 	for filename in files:
 		# -- load data
-		# load with Pillow, convert to a numpy array, rescale to 8 bits of depth
-		im = rescale_intensity(np.array(Image.open(filename)), 'dtype', 'uint8')
+		# load with Pillow, convert to a numpy array, rescale to 16 bits of depth
+		im = rescale_intensity(np.array(Image.open(filename)), 'dtype', 'uint16')
 		assert im.ndim == 2 # rank should be 2 if we're only considering grayscale images
 
 		# -- extract features
-		feature_vector = extraction.extract_features(im, pipe)
+		x = extraction.extract_features(im, pipe)
 
-		# -- add the features + metadata to the output list
-		processed_files.append({'filename': filename,
-			'feature_vector': feature_vector.tolist()}) # do .tolist() since json can't serialize `np.array`s
+		# -- add to the feature vector
+		X_raw.append(x)
 
-	json.dump(processed_files, open(output, 'w'), indent=4)
+	X = extraction.feature_postprocessing(np.array(X_raw), postprocess_options)
+
+	feature_map = dict(zip(files, 
+		map(lambda x: x.tolist(), X)))
+
+	json.dump(feature_map, open(output, 'w'), indent=4)
