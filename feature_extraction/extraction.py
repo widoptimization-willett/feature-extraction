@@ -49,7 +49,7 @@ def image_preprocessing(im, options):
 			im = exposure.equalize_hist(im)
 		elif options.equalize['method'] == "stretch":
 			pmin, pmax = np.percentile(im,
-				(options.equalize['saturation']*100, 100-options.equalize['saturation']*100))
+				(options.equalize['saturation'], 100-options.equalize['saturation']))
 			im = exposure.rescale_intensity(im, in_range=(pmin, pmax))
 
 	return im
