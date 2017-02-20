@@ -1,4 +1,5 @@
 import numpy as np
+import skimage.exposure as exposure
 from .util import AttributeDict
 
 def extract_features(image, measurements):
@@ -35,10 +36,20 @@ def feature_postprocessing(X, options):
 	return X
 
 def image_preprocessing(im, options):
-	_options = AttributeDict({'normalize': True, 'equalization': None})
+	_options = AttributeDict({'normalize': True, 'equalize': None})
 	_options.update(options or {}); options = _options
 
 	if options.normalize:
-		im = im.astype(float) / im.max() # normalize to [0,1]
+		im = exposure.rescale_intensity(im)
+
+	print options
+
+	if options.equalize:
+		if options.equalize['method'] == "histogram":
+			im = exposure.equalize_hist(im)
+		elif options.equalize['method'] == "stretch":
+			pmin, pmax = np.percentile(im,
+				(options.equalize['saturation']*100, 100-options.equalize['saturation']*100))
+			im = exposure.rescale_intensity(im, in_range=(pmin, pmax))
 
 	return im

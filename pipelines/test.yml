@@ -7,8 +7,9 @@ measurements:
 
 
 preprocessing:
-  equalization:
-    saturated: 0.002
+  equalize:
+    method: 'stretch'
+    saturation: 0.02
 
 postprocessing:
   normalize: yes
