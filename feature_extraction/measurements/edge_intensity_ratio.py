@@ -11,16 +11,20 @@ class EdgeIntensityRatio(Measurement):
 	}
 
 	def compute(self, image):
-		# -- find the outer boundary of the cell
-		cellmask = cell_boundary_mask(image)
+		measurements = []
+		for width in np.hstack([self.options.border_width]):
+			# -- find the outer boundary of the cell
+			cellmask = cell_boundary_mask(image)
 
-		# -- erode the boundary in by `border_width`
-		inner_mask = morph.binary_erosion(cellmask, morph.disk(self.options.border_width))
-		
-		# -- compute a mask of the border strip between the inner part and outer boundary of the cell
-		border_mask = cellmask & ~inner_mask
+			# -- erode the boundary in by ``width`1`
+			inner_mask = morph.binary_erosion(cellmask, morph.disk(width))
+			
+			# -- compute a mask of the border strip between the inner part and outer boundary of the cell
+			border_mask = cellmask & ~inner_mask
 
-		# -- find the ratio of the average intensities between the inner part and border of the cell
-		intensity_ratio = np.mean(image[inner_mask])/np.mean([border_mask])
+			# -- find the ratio of the average intensities between the border and interior of the cell
+			intensity_ratio = np.mean(image[border_mask])/np.mean([inner_mask])
 
-		return [intensity_ratio]
+			measurements.append(intensity_ratio)
+
+		return measurements

@@ -3,6 +3,8 @@ measurements:
   - module: HaralickTexture
   - module: Granularity
   - module: EdgeIntensityRatio
+    border_width: [10, 15, 20, 25]
+
 
 preprocessing:
   equalization:
