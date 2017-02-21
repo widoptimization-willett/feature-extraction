@@ -27,6 +27,9 @@ def feature_postprocessing(X, options):
 	_options = AttributeDict({'normalize': True, 'fill_nans': False})
 	_options.update(options or {}); options = _options
 
+	# make sure everything is a float64
+	X = X.astype('float64')
+
 	if options.fill_nans:
 		X = np.nan_to_num(X)
 
