@@ -16,7 +16,7 @@ class EdgeIntensityRatio(Measurement):
 			# -- find the outer boundary of the cell
 			cellmask = cell_boundary_mask(image)
 
-			# -- erode the boundary in by ``width`1`
+			# -- erode the boundary in by ``width``
 			inner_mask = morph.binary_erosion(cellmask, morph.disk(width))
 			
 			# -- compute a mask of the border strip between the inner part and outer boundary of the cell
