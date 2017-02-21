@@ -42,8 +42,6 @@ def image_preprocessing(im, options):
 	if options.normalize:
 		im = exposure.rescale_intensity(im)
 
-	print options
-
 	if options.equalize:
 		if options.equalize['method'] == "histogram":
 			im = exposure.equalize_hist(im)
