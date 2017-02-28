@@ -1,6 +1,7 @@
 import json
 
 import click
+from tqdm import tqdm
 import numpy as np
 from PIL import Image
 from skimage.exposure import rescale_intensity
@@ -16,7 +17,7 @@ def extract_features(pipeline_manifest, files, output):
 	preprocess_options, pipe, postprocess_options = pipeline.construct_from_manifest(open(pipeline_manifest))
 	# TODO(liam): replace this with sending to celery and joining
 	X_raw = [] # raw feature matrix
-	for filename in files:
+	for filename in tqdm(files):
 		# -- load data
 		# load with Pillow, convert to a numpy array, rescale to 16 bits of depth
 		im = rescale_intensity(np.array(Image.open(filename)), 'dtype', 'uint16')
