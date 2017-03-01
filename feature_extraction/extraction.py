@@ -2,6 +2,8 @@ import numpy as np
 import skimage.exposure as exposure
 from .util import AttributeDict
 
+from sklearn.decomposition import PCA
+
 def extract_features(image, measurements):
 	"""
 	Given an image as a Numpy array and a set of measurement objects
@@ -24,7 +26,7 @@ def normalize_features(X):
 	return X
 
 def feature_postprocessing(X, options):
-	_options = AttributeDict({'normalize': True, 'fill_nans': False})
+	_options = AttributeDict({'normalize': True, 'fill_nans': False, 'pca': None})
 	_options.update(options or {}); options = _options
 
 	# make sure everything is a float64
@@ -35,6 +37,10 @@ def feature_postprocessing(X, options):
 
 	if options.normalize:
 		X = normalize_features(X)
+
+	if options.pca:
+		pca = PCA(n_components=options.pca['components'])
+		X = pca.fit_transform(X)
 
 	return X
 
