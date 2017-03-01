@@ -1,0 +1,14 @@
+measurements:
+  - module: Caffenet
+    caffe_root: ~/build/caffe-rc4
+
+preprocessing:
+  equalize:
+    method: 'stretch'
+    saturation: 0.2
+
+postprocessing:
+  normalize: no
+  fill_nans: no
+  pca:
+    components: 1000
