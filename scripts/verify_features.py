@@ -34,10 +34,9 @@ trainingdb = featuredb[0:splitpoint+overlap]
 verificationdb = featuredb[splitpoint-overlap:]
 
 X, Y = extract_xy(trainingdb)
-# print X.shape, Y.shape, len(trainingdb)
 X_v, Y_v = extract_xy(verificationdb)
 
-th, l = linearclassifier.find_optimal_weights(np.linspace(0, 10, 200), X, Y, X_v, Y_v)
+th, l = linearclassifier.find_optimal_weights(np.linspace(0, 10, 10), X, Y, X_v, Y_v)
 print "optimum lambda={}; found theta_hat={}".format(l, th)
 
 errno = linearclassifier.prediction_errors(Y_v, linearclassifier.predict(X_v, th))
