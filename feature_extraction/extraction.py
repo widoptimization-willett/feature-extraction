@@ -16,9 +16,12 @@ def extract_features(image, measurements):
 	return np.hstack([m.compute(image) for m in measurements])
 
 def normalize_features(X):
-	# recenter features and normalize over the dataset
+	# -- recenter features and normalize over the dataset
 	X -= np.mean(X, axis=0)
-	X /= np.linalg.norm(X, axis=0)
+
+	# normalize where nonzero
+	nz = X != 0
+	X[nz] /= np.linalg.norm(X[nz], axis=0)
 
 	# normalize for each record
 	X /= np.vstack(np.linalg.norm(X, axis=1))
