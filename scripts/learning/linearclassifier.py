@@ -30,6 +30,11 @@ def prediction_errors(Y, _Y):
 	_Y_clipped = (_Y>0)*2-1
 	return float(np.count_nonzero(Y-_Y_clipped))
 
+def errors_for_class(c, Y, _Y):
+	_Y_clipped = (_Y>0)*2-1
+	errmask = (Y-_Y_clipped) != 0
+	return float((errmask & (Y==c)).sum())
+
 def find_optimal_weights(L, X_train, Y_train, X_verification, Y_verification):
 	errors = [prediction_errors(Y_verification,
 								predict(X_verification, train_weights(l, X_train, Y_train))) for l in L]
