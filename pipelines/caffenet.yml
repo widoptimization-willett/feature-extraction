@@ -8,7 +8,7 @@ preprocessing:
     saturation: 0.2
 
 postprocessing:
-  normalize: no
-  fill_nans: no
+  normalize: yes
+  fill_nans: yes
   pca:
-    components: 1000
+    components: 40
