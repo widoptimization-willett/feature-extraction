@@ -32,8 +32,10 @@ def slice_percent(x, a, b):
 	b_i = int(np.round(b/100.0 * len(x)))
 	return x[a_i:b_i]
 
+def log_step(s):
+	return Style.BRIGHT+Fore.GREEN+"==> "+ Fore.RESET + s + Style.RESET_ALL
 
-print Style.BRIGHT+Fore.GREEN+"==> "+ Fore.RESET + "Assembling feature databases" + Style.RESET_ALL
+print log_step("Assembling feature databases")
 
 with open(sys.argv[1]) as f:
 	featurefile = json.load(f)
@@ -57,12 +59,12 @@ eval_verif = slice_percent(vlpdb, 90, 100) + slice_percent(diffusedb, 90, 100)
 print "tuning set:\n  #train={}, #verif={}".format(len(tuning_train), len(tuning_verif))
 print "evaluation set:\n  #train={}, #verif={}".format(len(eval_train), len(eval_verif))
 
-print Style.BRIGHT+Fore.GREEN+"==> "+ Fore.RESET + "Finding optimal tuning parameters" + Style.RESET_ALL
+print log_step("Finding optimal tuning parameters")
 
 _, l = linearclassifier.find_optimal_weights(np.linspace(0, 5, 100), *(extract_xy(tuning_train) + extract_xy(tuning_verif)))
 print "tuning finished!\n-----------\n * λ = {:.4f}".format(l)
 
-print Style.BRIGHT+Fore.GREEN+"==> "+ Fore.RESET + "Evaluating tuned model" + Style.RESET_ALL
+print log_step("Evaluating tuned model")
 
 th = linearclassifier.train_weights(l, *extract_xy(eval_train))
 print "weight summary\n-----------"
