@@ -27,6 +27,11 @@ def shuffle(a, b):
 def filter_class(c, db):
 	return [x for x in featuredb if x[0] == c]
 
+def slice_percent(x, a, b):
+	a_i = int(np.round(a/100.0 * len(x)))
+	b_i = int(np.round(b/100.0 * len(x)))
+	return x[a_i:b_i]
+
 with open(sys.argv[1]) as f:
 	featurefile = json.load(f)
 
