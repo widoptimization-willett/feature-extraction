@@ -39,6 +39,9 @@ with open(sys.argv[1]) as f:
 	featurefile = json.load(f)
 
 featuredb = [(class_from_filename(filen), x) for (filen, x) in featurefile.items()]
+for c, v in featuredb:
+	v.insert(0, 1.0) # prepend 1.0 to every feature vector
+
 vlpdb = filter_class('vlp', featuredb)
 diffusedb = filter_class('diffuse', featuredb)
 
