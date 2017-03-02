@@ -36,12 +36,15 @@ with open(sys.argv[1]) as f:
 	featurefile = json.load(f)
 
 featuredb = [(class_from_filename(filen), x) for (filen, x) in featurefile.items()]
-random.shuffle(featuredb)
+vlpdb = filter_class('vlp', featuredb)
+diffusedb = filter_class('diffuse', featuredb)
 
-splitpoint = len(featuredb)/2
-overlap = 10
-trainingdb = featuredb[0:splitpoint+overlap]
-verificationdb = featuredb[splitpoint-overlap:]
+tuning_train = slice_percent(vlpdb, 0, 80) + slice_percent(diffusedb, 0, 80)
+tuning_verif = slice_percent(vlpdb, 80, 90) + slice_percent(diffusedb, 80, 90)
+
+eval_train = slice_percent(vlpdb, 0, 90) + slice_percent(diffusedb, 0, 90)
+eval_verif = slice_percent(vlpdb, 90, 100) + slice_percent(diffusedb, 90, 100)
+
 
 X, Y = extract_xy(trainingdb)
 X_v, Y_v = extract_xy(verificationdb)
