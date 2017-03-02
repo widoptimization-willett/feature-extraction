@@ -46,12 +46,13 @@ eval_train = slice_percent(vlpdb, 0, 90) + slice_percent(diffusedb, 0, 90)
 eval_verif = slice_percent(vlpdb, 90, 100) + slice_percent(diffusedb, 90, 100)
 
 
-X, Y = extract_xy(trainingdb)
-X_v, Y_v = extract_xy(verificationdb)
+_, l = linearclassifier.find_optimal_weights(np.linspace(0, 5, 100), *(extract_xy(tuning_train) + extract_xy(tuning_verif)))
 
-th, l = linearclassifier.find_optimal_weights(np.linspace(0, 10, 10), X, Y, X_v, Y_v)
-print "optimum lambda={}; found theta_hat={}".format(l, th)
+th = linearclassifier.train_weights(l, *extract_xy(eval_train))
 
+X_v, Y_v = extract_xy(eval_verif)
 errno = linearclassifier.prediction_errors(Y_v, linearclassifier.predict(X_v, th))
 
 print "classification error: #={}, %={}".format(errno, 100.0*errno/len(X_v))
+vlp_errno = linearclassifier.errors_for_class(encode_class('vlp'), Y_v, linearclassifier.predict(X_v, th))
+diffuse_errno = linearclassifier.errors_for_class(encode_class('diffuse'), Y_v, linearclassifier.predict(X_v, th))
