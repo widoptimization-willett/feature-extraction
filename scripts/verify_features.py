@@ -24,6 +24,9 @@ def extract_xy(db):
 def shuffle(a, b):
 	return filter(None, chain(*izip_longest(a, b)))
 
+def filter_class(c, db):
+	return [x for x in featuredb if x[0] == c]
+
 with open(sys.argv[1]) as f:
 	featurefile = json.load(f)
 
