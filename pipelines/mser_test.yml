@@ -1,0 +1,13 @@
+measurements:
+  - module: MSER
+    type: histogram
+    bins: 16
+
+preprocessing:
+  equalize:
+    method: 'stretch'
+    saturation: 0.2
+
+postprocessing:
+  normalize: yes
+  fill_nans: yes
