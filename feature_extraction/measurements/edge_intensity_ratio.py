@@ -23,7 +23,7 @@ class EdgeIntensityRatio(Measurement):
 			border_mask = cellmask & ~inner_mask
 
 			# -- find the ratio of the average intensities between the border and interior of the cell
-			intensity_ratio = np.mean(image[border_mask])/np.mean([inner_mask])
+			intensity_ratio = np.mean(image[border_mask])/np.mean(image[inner_mask])
 
 			measurements.append(intensity_ratio)
 
