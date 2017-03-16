@@ -1,10 +1,10 @@
 measurements:
-  - module: PixelAverage
-  - module: HaralickTexture
-  - module: Granularity
-  - module: EdgeIntensityRatio
+  - module: PixelAverage # 1
+  - module: HaralickTexture # 13
+  - module: Granularity # 15
+  - module: EdgeIntensityRatio # 4
     border_width: [10, 15, 20, 25]
-  - module: EulerNumber
+  - module: EulerNumber # 10
 
 
 preprocessing:
