@@ -46,6 +46,8 @@ for c, v in featuredb:
 
 vlpdb = filter_class('vlp', featuredb)
 diffusedb = filter_class('diffuse', featuredb)
+random.seed(0)
+random.shuffle(vlpdb); random.shuffle(diffusedb)
 
 print "total feature db size = {}".format(len(featuredb))
 print "  #vlp = {}, #diffuse = {}".format(len(vlpdb), len(diffusedb))
