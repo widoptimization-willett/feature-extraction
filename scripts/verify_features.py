@@ -61,8 +61,9 @@ print "evaluation set:\n  #train={}, #verif={}".format(len(eval_train), len(eval
 
 print log_step("Finding optimal tuning parameters")
 
-_, l = linearclassifier.find_optimal_weights(np.linspace(0, 5, 100), *(extract_xy(tuning_train) + extract_xy(tuning_verif)))
-print "tuning finished!\n-----------\n * λ = {:.4f}".format(l)
+_, l = linearclassifier.find_optimal_weights(np.linspace(0, 5, 1000),
+	*(extract_xy(tuning_train) + extract_xy(tuning_verif)))
+print "tuning finished!\n-----------\n * λ = {}".format(l)
 
 print log_step("Evaluating tuned model")
 
