@@ -1,15 +1,6 @@
 # ignore our dataset
 data/
 
-# ignore processed features
-features.json
-
-# ignore personal testing notebooks
-notebooks/
-
-# ignore local copies of interesting CellProfiler code
-_cellprofiler/
-
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
