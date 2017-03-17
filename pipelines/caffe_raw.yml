@@ -1,0 +1,12 @@
+measurements:
+  - module: Caffenet
+    caffe_root: ~/build/caffe-rc4
+
+preprocessing:
+  equalize:
+    method: 'stretch'
+    saturation: 0.2
+
+postprocessing:
+  normalize: yes
+  fill_nans: yes
