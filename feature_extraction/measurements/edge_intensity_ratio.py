@@ -1,3 +1,5 @@
+# encoding: utf8
+
 import numpy as np
 from . import Measurement
 from ..util.cleanup import cell_boundary_mask
