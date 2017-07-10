@@ -4,7 +4,7 @@ from .util import AttributeDict
 
 from sklearn.decomposition import PCA
 
-def extract_features(image, measurements):
+def extract_features(image, measurements, debug=False):
 	"""
 	Given an image as a Numpy array and a set of measurement objects
 	implementing a compute method returning a feature vector, return a combined
@@ -13,7 +13,13 @@ def extract_features(image, measurements):
 
 	# TODO(liam): parallelize multiple measurements on an image by using Celery
 	
-	return np.hstack([m.compute(image) for m in measurements])
+	def trace(m, x):
+		"""if the debug flag is set to true, log parameters of each measurement"""
+		if debug:
+			print("{}: len(x) = {}".format(type(m).__name__, len(x)))
+
+		return x
+	return np.hstack([trace(m, m.compute(image)) for m in measurements])
 
 def normalize_features(X):
 	# -- recenter features and normalize over the dataset
