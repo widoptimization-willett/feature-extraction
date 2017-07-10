@@ -1,6 +1,7 @@
 measurements:
   - module: Caffenet
     caffe_root: ~/build/caffe-rc4
+    layer: conv3
 
 preprocessing:
   equalize:

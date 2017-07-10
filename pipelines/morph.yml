@@ -1,8 +1,7 @@
 measurements:
-  - module: PixelAverage # 1
   - module: HaralickTexture # 13
   - module: Granularity # 15
-  - module: EdgeIntensityRatio # 4
+  - module: EdgeIntensityRatio
     border_width: [10, 15, 20, 25]
   - module: EulerNumber # 10
 
