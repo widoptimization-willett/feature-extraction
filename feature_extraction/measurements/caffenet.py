@@ -10,6 +10,7 @@ class Caffenet(Measurement):
 	default_options = {
 		'caffe_root': os.path.expanduser('~/caffe/'),
 		'caffe_mode': 'cpu',
+		'layer': 'fc7',
 	}
 
 	def __init__(self, options=None):
@@ -50,6 +51,4 @@ class Caffenet(Measurement):
 		# run the network forward
 		self.net.forward()
 
-		fc7 = self.net.blobs['fc7'].data[0].copy()
-
-		return fc7
+		return self.net.blobs[self.options.layer].data[0].copy().ravel()
