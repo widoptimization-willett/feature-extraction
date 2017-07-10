@@ -8,6 +8,7 @@ from skimage.exposure import rescale_intensity
 
 from . import extraction, pipeline
 
+np.seterr(all='raise')
 
 @click.command()
 @click.argument('pipeline_manifest', required=True)
