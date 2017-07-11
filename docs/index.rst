@@ -3,17 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to feature-extraction's documentation!
-==============================================
+Welcome to extractify's documentation!
+======================================
 
+User's Guide
+------------
+.. toctree::
+    :maxdepth: 2
+
+    installation
+
+API reference
+-------------
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   api
