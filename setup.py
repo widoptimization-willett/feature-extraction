@@ -1,4 +1,10 @@
+import os
 from setuptools import setup
+
+if os.environ.get('READTHEDOCS'):
+	INSTALL_REQUIRES = []
+else:
+	INSTALL_REQUIRES = ['PyYAML', 'numpy', 'Pillow', 'Click', 'scikit-image', 'centrosome']
 
 setup(
 	name='feature-extraction',
@@ -8,7 +14,7 @@ setup(
 	license='Apache',
 
 	packages=['feature_extraction'],
-	install_requires=['PyYAML', 'numpy', 'Pillow', 'Click', 'scikit-image', 'centrosome'],
+	install_requires=INSTALL_REQUIRES,
 
 	entry_points='''
 	[console_scripts]
