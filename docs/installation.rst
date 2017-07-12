@@ -86,9 +86,9 @@ to are:
      If you don’t have a BLAS implementation installed, I recommend
      OpenBLAS.
    | If you installed OpenBLAS with Homebrew, make sure to follow the
-     instructions in ``Makefile.configure`` wrt ``BLAS_LIB``.
+     instructions in ``Makefile.configure`` pertaining to ``BLAS_LIB``.
 
 -  ``PYTHON_INCLUDE``: point this at your Python include directory. It’s
-   prefilled with ``/usr/include/python``; if you want to build for only
+   preset to ``/usr/include/python``; if you want to build for only
    Python 2.7, change all references to that to
    ``/usr/include/python2.7``.

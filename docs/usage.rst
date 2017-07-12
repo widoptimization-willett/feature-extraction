@@ -21,7 +21,7 @@ Pipeline Manifests
 ^^^^^^^^^^^^^^^^^^
 
 Pipeline manifests are YAML files describing the sequence of operations to be applied to the dataset to generate features.
-A pipline consists of:
+A pipeline consists of:
 
 * Preprocessing steps, such as image normalization or cropping
 * Measurement steps, which generate features in the feature vector
