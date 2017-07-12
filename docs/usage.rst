@@ -27,7 +27,7 @@ A pipline consists of:
 * Measurement steps, which generate features in the feature vector
 * Postprocessing steps, such as feature vector centering and normalization or PCA
 
-This is an example of a pipline used for extracting Caffenet features:
+This is an example of a pipeline used for extracting Caffenet features:
 
 .. code-block:: yaml
 
@@ -55,4 +55,4 @@ Output
 
 The output is a JSON file containing an object which maps filenames to feature vectors.
 
-If you are exporting to, for instance, ``.npy`` files from this format, it is recommended to impose a consistent filename ordering. *Note:* A script to do this is planned and will be added to the distribution (soon).
+If you are exporting to, for instance, separated label and feature ``.npy`` files from this format, it is recommended to impose a consistent filename ordering. *Note:* A script to do this is planned and will be added to the distribution (soon).
