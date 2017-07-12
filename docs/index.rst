@@ -12,6 +12,7 @@ User's Guide
     :maxdepth: 2
 
     installation
+    usage
 
 API reference
 -------------
